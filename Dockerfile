@@ -23,6 +23,11 @@ RUN cd /init_pio_tasmota &&\
     mkdir /.cache /.local &&\
     chmod -R 777 /.platformio /usr/local/lib /.cache /.local
 
+RUN apt update &&\
+    apt install -y libprotobuf-c-dev &&\
+    apt-get clean autoclean &&\
+    apt-get autoremove --yes &&\
+    rm -rf /var/lib/{apt,dpkg,cache,log}/
 
 COPY entrypoint.sh /entrypoint.sh
 
